@@ -6,15 +6,9 @@ int main()
 {
     int i,j,m=0,n=0,l,k,a[16]={0},b[16]={0};
 
-    char text[100],am[6][6]={0},key[20]={0},km[6][6]={0},x[6][6]={0};
+    char text[100]="Two One Nine Two",am[6][6]={0},key[20]="Thats my Kung Fu",km[6][6]={0},x[6][6]={0};
 
-    printf("enter the plain text:");
-
-    scanf("%s",text);
-
-    printf("enter the key : ");
-
-    scanf("%s",key);
+   
 
     l=strlen(text);
 
@@ -261,10 +255,40 @@ int main()
 
 
 
+ //mix column
+
+  int mix[4][4]={{02,03,01,01},
+                {01,02,03,01},
+                {01,01,02,03},
+                {03,01,01,02}};
 
 
+  int mc[4][4];
+  
+  for(j=0;j<4;j++)
 
+  {
 
+   mc[0][j]=(0x02*c[0][j])^(0x03*c[1][j])^(c[2][j])^(c[3][j]);
+
+   mc[1][j]=(c[0][j])^(0x02*c[1][j])^(0x03*c[2][j])^(c[3][j]);
+
+   mc[2][j]=(c[0][j])^(c[1][j])^(0x02*c[2][j])^(0x03*c[3][j]);
+
+   mc[3][j]=(0x03*c[0][j])^(c[1][j])^(c[2][j])^(0x02*c[3][j]);
+
+  }
+      
+  printf("after mix column\n");
+
+   for(i=0;i<4;i++)
+    {
+        for(j=0;j<4;j++)
+        {
+         printf(" %02X\t ",mc[i][j]&0xff);
+        }
+        printf("\n");
+    }
 
 
 
